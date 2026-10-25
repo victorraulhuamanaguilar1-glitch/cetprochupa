@@ -28,7 +28,7 @@ window.CETPRO = {
   // ---------- Conexión con Google (ver GUIA_PUBLICACION.html) ----------
   // Pegue aquí la URL de su aplicación web de Google Apps Script.
   // Mientras esté vacía, los formularios funcionan en MODO DEMOSTRACIÓN (no guardan nada).
-  urlServidor: "",
+  urlServidor: "https://script.google.com/macros/s/AKfycbz09dT7DlOTfyT_O8RyLwWEKdLLuno9fdhho-li8vDYhlIjlipXSoDJidCofBjNvHo/exec",
 
   // ---------- Matrícula ----------
   periodoMatricula: "2027-I",
