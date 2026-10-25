@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mesa de partes virtual · CETPRO Chupa</title>
+  <meta name="description" content="Presente solicitudes y documentos al CETPRO de Chupa desde su celular y consulte el estado de su expediente.">
+  <meta name="theme-color" content="#164a72">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fuentes/archivo.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/estilos.css">
+</head>
+<body data-pagina="tramites">
+  <a class="saltar" href="#contenido">Ir al contenido</a>
+  <header id="cabecera"></header>
+
+  <main id="contenido">
+    <div class="encabezado-pagina">
+      <div class="angosto">
+        <h1>Mesa de partes virtual</h1>
+        <p>Presente solicitudes y documentos sin viajar. Cada envío recibe un número de expediente.</p>
+      </div>
+    </div>
+    <div class="aguayo fina" role="presentation"></div>
+
+    <div class="angosto">
+      <div class="pestanas" role="tablist">
+        <button type="button" role="tab" aria-selected="true" aria-controls="panel-presentar">Presentar un documento</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="panel-consulta">Consultar mi trámite</button>
+      </div>
+
+      <section id="panel-presentar" role="tabpanel">
+        <form class="formulario" id="form-tramite" novalidate>
+          <p class="mensaje info" id="aviso-mesa"></p>
+          <fieldset>
+            <legend>Datos de quien presenta</legend>
+            <div class="fila">
+              <div class="campo">
+                <label for="tra-dni">DNI</label>
+                <input id="tra-dni" name="dni" inputmode="numeric" required data-tipo="dni" autocomplete="off">
+                <div class="error" aria-live="polite"></div>
+              </div>
+              <div class="campo">
+                <label for="tra-celular">Celular o WhatsApp</label>
+                <input id="tra-celular" name="celular" type="tel" inputmode="numeric" required data-tipo="celular" autocomplete="tel">
+                <div class="error" aria-live="polite"></div>
+              </div>
+            </div>
+            <div class="campo">
+              <label for="tra-nombres">Apellidos y nombres</label>
+              <input id="tra-nombres" name="nombres" required data-tipo="texto" autocomplete="name">
+              <div class="error" aria-live="polite"></div>
+            </div>
+            <div class="campo">
+              <label for="tra-correo">Correo electrónico <span class="opcional">(opcional, para recibir la respuesta)</span></label>
+              <input id="tra-correo" name="correo" type="email" data-tipo="correo" autocomplete="email">
+              <div class="error" aria-live="polite"></div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Su trámite</legend>
+            <div class="campo">
+              <label for="tra-tipo">Tipo de trámite</label>
+              <select id="tra-tipo" name="tipo_tramite" required></select>
+              <div class="error" aria-live="polite"></div>
+            </div>
+            <div class="campo">
+              <label for="tra-asunto">Asunto</label>
+              <input id="tra-asunto" name="asunto" required data-tipo="texto" maxlength="150" placeholder="Ejemplo: Solicito constancia de estudios 2025">
+              <div class="error" aria-live="polite"></div>
+            </div>
+            <div class="campo">
+              <label for="tra-detalle">Detalle de su pedido</label>
+              <textarea id="tra-detalle" name="detalle" required data-tipo="texto" maxlength="3000"></textarea>
+              <div class="error" aria-live="polite"></div>
+            </div>
+            <div class="campo">
+              <label>Documentos adjuntos <span class="opcional">(opcional)</span></label>
+              <div class="archivos" id="tra-adjuntos" data-max="3">
+                <input type="file" id="tra-adjuntos-input" accept=".pdf,.jpg,.jpeg,.png,image/*" multiple>
+                <label for="tra-adjuntos-input">Elegir archivos</label>
+                <div class="ayuda">Solicitud firmada, voucher, DNI u otros. Hasta 3 archivos PDF, JPG o PNG de 4 MB cada uno.</div>
+                <ul class="lista-archivos"></ul>
+              </div>
+              <div class="error" aria-live="polite"></div>
+            </div>
+          </fieldset>
+          <label class="consentimiento">
+            <input type="checkbox" name="acepta_datos" required data-requerido="Debe aceptar para enviar su documento.">
+            <span>Declaro que la información es verdadera y autorizo el uso de mis datos para atender este trámite (Ley N.° 29733).<span class="error" style="display:block"></span></span>
+          </label>
+          <input class="trampa" type="text" name="web" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="mensaje-envio"></div>
+          <div class="acciones-form"><span></span><button type="submit" class="boton exito">Enviar documento</button></div>
+        </form>
+      </section>
+
+      <section id="panel-consulta" role="tabpanel" hidden>
+        <form class="formulario" id="form-consulta" novalidate>
+          <fieldset>
+            <legend>Consultar estado</legend>
+            <p style="margin-top:0;color:var(--gris)">Sirve para expedientes de mesa de partes (EXP), matrícula (MAT) y pagos (PAG).</p>
+            <div class="fila">
+              <div class="campo">
+                <label for="con-codigo">Número de trámite</label>
+                <input id="con-codigo" name="codigo" required placeholder="EXP-2026-00001" autocomplete="off" style="text-transform:uppercase">
+                <div class="error" aria-live="polite"></div>
+              </div>
+              <div class="campo">
+                <label for="con-dni">DNI de quien lo presentó</label>
+                <input id="con-dni" name="dni_consulta" inputmode="numeric" required data-tipo="dni" autocomplete="off">
+                <div class="error" aria-live="polite"></div>
+              </div>
+            </div>
+          </fieldset>
+          <button type="submit" class="boton">Consultar</button>
+          <div id="resultado-consulta" aria-live="polite"></div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer id="pie"></footer>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

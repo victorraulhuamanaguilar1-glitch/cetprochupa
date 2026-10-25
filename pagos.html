@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pagos · CETPRO Chupa</title>
+  <meta name="description" content="Tarifas, medios de pago y registro de comprobantes del CETPRO de Chupa.">
+  <meta name="theme-color" content="#164a72">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fuentes/archivo.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/estilos.css">
+</head>
+<body data-pagina="pagos">
+  <a class="saltar" href="#contenido">Ir al contenido</a>
+  <header id="cabecera"></header>
+
+  <main id="contenido">
+    <div class="encabezado-pagina">
+      <div class="angosto">
+        <h1>Pagos</h1>
+        <p>Pague por <span class="texto-medios">Yape, Plin o depósito</span> y registre aquí su comprobante. Lo verificamos y queda en su historial.</p>
+      </div>
+    </div>
+    <div class="aguayo fina" role="presentation"></div>
+
+    <div class="angosto">
+      <section class="formulario" aria-labelledby="t-tarifas">
+        <h2 id="t-tarifas" style="margin-top:0;font-stretch:85%">Tarifas</h2>
+        <table class="tabla-tarifas" id="tabla-tarifas">
+          <thead><tr><th scope="col">Concepto</th><th scope="col">Monto</th></tr></thead>
+          <tbody></tbody>
+        </table>
+        <h2 style="font-stretch:85%;margin-top:30px">Dónde pagar</h2>
+        <div class="medios" id="medios-pago"></div>
+      </section>
+
+      <form class="formulario" id="form-pago" novalidate>
+        <fieldset>
+          <legend>Registrar mi pago</legend>
+          <div class="fila">
+            <div class="campo">
+              <label for="pag-dni">DNI del estudiante</label>
+              <input id="pag-dni" name="dni" inputmode="numeric" required data-tipo="dni" autocomplete="off">
+              <div class="error" aria-live="polite"></div>
+            </div>
+            <div class="campo">
+              <label for="pag-celular">Celular o WhatsApp</label>
+              <input id="pag-celular" name="celular" type="tel" inputmode="numeric" required data-tipo="celular">
+              <div class="error" aria-live="polite"></div>
+            </div>
+          </div>
+          <div class="campo">
+            <label for="pag-nombres">Apellidos y nombres del estudiante</label>
+            <input id="pag-nombres" name="nombres" required data-tipo="texto" autocomplete="name">
+            <div class="error" aria-live="polite"></div>
+          </div>
+          <div class="fila">
+            <div class="campo">
+              <label for="pag-concepto">Concepto</label>
+              <select id="pag-concepto" name="concepto" required></select>
+              <div class="error" aria-live="polite"></div>
+            </div>
+            <div class="campo">
+              <label for="pag-medio">Medio de pago</label>
+              <select id="pag-medio" name="medio" required>
+                <option value="">Elija</option><option>Yape</option><option>Plin</option>
+                <option>Depósito o transferencia bancaria</option><option>Otro</option>
+              </select>
+              <div class="error" aria-live="polite"></div>
+            </div>
+          </div>
+          <div class="fila">
+            <div class="campo">
+              <label for="pag-monto">Monto pagado (S/)</label>
+              <input id="pag-monto" name="monto" inputmode="decimal" required data-tipo="monto">
+              <div class="error" aria-live="polite"></div>
+            </div>
+            <div class="campo">
+              <label for="pag-fecha">Fecha del pago</label>
+              <input id="pag-fecha" name="fecha_pago" type="date" required>
+              <div class="error" aria-live="polite"></div>
+            </div>
+          </div>
+          <div class="campo">
+            <label for="pag-operacion">Número de operación</label>
+            <input id="pag-operacion" name="operacion" required data-tipo="operacion" autocomplete="off">
+            <div class="error" aria-live="polite"></div>
+          </div>
+          <div class="campo">
+            <label for="pag-correo">Correo electrónico <span class="opcional">(opcional)</span></label>
+            <input id="pag-correo" name="correo" type="email" data-tipo="correo" autocomplete="email">
+            <div class="error" aria-live="polite"></div>
+          </div>
+          <div class="campo">
+            <label>Captura o voucher</label>
+            <div class="archivos" id="pag-voucher" data-max="1" data-requerido="Adjunte la captura o el voucher del pago.">
+              <input type="file" id="pag-voucher-input" accept=".pdf,.jpg,.jpeg,.png,image/*">
+              <label for="pag-voucher-input">Elegir captura o foto del voucher</label>
+              <div class="ayuda">PDF, JPG o PNG, hasta 4 MB.</div>
+              <ul class="lista-archivos"></ul>
+            </div>
+            <div class="error" aria-live="polite"></div>
+          </div>
+        </fieldset>
+        <label class="consentimiento">
+          <input type="checkbox" name="acepta_datos" required data-requerido="Debe aceptar para registrar su pago.">
+          <span>Declaro que el comprobante es auténtico y autorizo el uso de mis datos para verificar el pago (Ley N.° 29733).<span class="error" style="display:block"></span></span>
+        </label>
+        <input class="trampa" type="text" name="web" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="mensaje-envio"></div>
+        <div class="acciones-form"><span></span><button type="submit" class="boton exito">Registrar pago</button></div>
+      </form>
+    </div>
+  </main>
+
+  <footer id="pie"></footer>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
