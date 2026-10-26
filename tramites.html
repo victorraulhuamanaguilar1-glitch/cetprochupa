@@ -3,10 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mesa de partes virtual · CETPRO Chupa</title>
-  <meta name="description" content="Presente solicitudes y documentos al CETPRO de Chupa desde su celular y consulte el estado de su expediente.">
+  <title>Mesa de partes virtual y consulta de trámites · CETPRO Conrado Kretz Lenz – Chupa</title>
+  <meta name="description" content="Presente solicitudes al CETPRO de Chupa, consulte el estado de su expediente y corrija trámites observados desde su celular.">
   <meta name="theme-color" content="#164a72">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CETPRO Conrado Kretz Lenz – Chupa">
+  <meta property="og:title" content="Mesa de partes virtual y consulta de trámites · CETPRO Conrado Kretz Lenz – Chupa">
+  <meta property="og:description" content="Presente solicitudes al CETPRO de Chupa, consulte el estado de su expediente y corrija trámites observados desde su celular.">
+  <meta property="og:image" content="https://victorraulhuamanaguilar1-glitch.github.io/cetprochupa/assets/img/compartir.jpg">
+  <meta property="og:url" content="https://victorraulhuamanaguilar1-glitch.github.io/cetprochupa/tramites.html">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/logo.png">
   <link rel="preload" href="assets/fuentes/archivo.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/estilos.css">
 </head>
@@ -17,16 +25,16 @@
   <main id="contenido">
     <div class="encabezado-pagina">
       <div class="angosto">
-        <h1>Mesa de partes virtual</h1>
-        <p>Presente solicitudes y documentos sin viajar. Cada envío recibe un número de expediente.</p>
+        <h1>Trámites en línea</h1>
+        <p>Presente documentos, consulte el estado de su trámite y corrija lo observado, sin viajar.</p>
       </div>
     </div>
     <div class="aguayo fina" role="presentation"></div>
-
     <div class="angosto">
       <div class="pestanas" role="tablist">
-        <button type="button" role="tab" aria-selected="true" aria-controls="panel-presentar">Presentar un documento</button>
-        <button type="button" role="tab" aria-selected="false" aria-controls="panel-consulta">Consultar mi trámite</button>
+        <button type="button" role="tab" aria-selected="true" aria-controls="panel-presentar">Presentar</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="panel-consulta">Consultar</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="panel-subsanar">Subsanar</button>
       </div>
 
       <section id="panel-presentar" role="tabpanel">
@@ -35,16 +43,16 @@
           <fieldset>
             <legend>Datos de quien presenta</legend>
             <div class="fila">
-              <div class="campo">
-                <label for="tra-dni">DNI</label>
-                <input id="tra-dni" name="dni" inputmode="numeric" required data-tipo="dni" autocomplete="off">
-                <div class="error" aria-live="polite"></div>
-              </div>
-              <div class="campo">
-                <label for="tra-celular">Celular o WhatsApp</label>
-                <input id="tra-celular" name="celular" type="tel" inputmode="numeric" required data-tipo="celular" autocomplete="tel">
-                <div class="error" aria-live="polite"></div>
-              </div>
+            <div class="campo">
+              <label for="tra-dni">DNI</label>
+              <input id="tra-dni" name="dni" inputmode="numeric" required data-tipo="dni" autocomplete="off">
+              <div class="error" aria-live="polite"></div>
+            </div>
+            <div class="campo">
+              <label for="tra-celular">Celular o WhatsApp</label>
+              <input id="tra-celular" name="celular" type="tel" inputmode="numeric" required data-tipo="celular" autocomplete="tel">
+              <div class="error" aria-live="polite"></div>
+            </div>
             </div>
             <div class="campo">
               <label for="tra-nombres">Apellidos y nombres</label>
@@ -99,22 +107,61 @@
         <form class="formulario" id="form-consulta" novalidate>
           <fieldset>
             <legend>Consultar estado</legend>
-            <p style="margin-top:0;color:var(--gris)">Sirve para expedientes de mesa de partes (EXP), matrícula (MAT) y pagos (PAG).</p>
+            <p style="margin-top:0;color:var(--gris)">Para expedientes de mesa de partes (EXP), matrícula (MAT) y pagos (PAG). Si su trámite fue observado, verá el motivo y podrá corregirlo.</p>
             <div class="fila">
-              <div class="campo">
-                <label for="con-codigo">Número de trámite</label>
-                <input id="con-codigo" name="codigo" required placeholder="EXP-2026-00001" autocomplete="off" style="text-transform:uppercase">
-                <div class="error" aria-live="polite"></div>
-              </div>
-              <div class="campo">
-                <label for="con-dni">DNI de quien lo presentó</label>
-                <input id="con-dni" name="dni_consulta" inputmode="numeric" required data-tipo="dni" autocomplete="off">
-                <div class="error" aria-live="polite"></div>
-              </div>
+            <div class="campo">
+              <label for="con-codigo">Número de trámite</label>
+              <input id="con-codigo" name="codigo" required data-tipo="codigo" placeholder="MAT-2026-00001" autocomplete="off">
+              <div class="error" aria-live="polite"></div>
+            </div>
+            <div class="campo">
+              <label for="con-dni">DNI de quien lo presentó</label>
+              <input id="con-dni" name="dni_consulta" inputmode="numeric" required data-tipo="dni" autocomplete="off">
+              <div class="error" aria-live="polite"></div>
+            </div>
             </div>
           </fieldset>
           <button type="submit" class="boton">Consultar</button>
           <div id="resultado-consulta" aria-live="polite"></div>
+        </form>
+      </section>
+
+      <section id="panel-subsanar" role="tabpanel" hidden>
+        <form class="formulario" id="form-subsanar" novalidate>
+          <fieldset>
+            <legend>Subsanar un trámite observado</legend>
+            <p style="margin-top:0;color:var(--gris)">Use esta opción solo si al consultar su trámite aparece como <strong>Observado</strong>. Envíe lo que se le pidió en el motivo.</p>
+            <div class="fila">
+            <div class="campo">
+              <label for="sub-codigo">Número de trámite</label>
+              <input id="sub-codigo" name="codigo" required data-tipo="codigo" placeholder="MAT-2026-00001" autocomplete="off">
+              <div class="error" aria-live="polite"></div>
+            </div>
+            <div class="campo">
+              <label for="sub-dni">DNI</label>
+              <input id="sub-dni" name="dni" inputmode="numeric" required data-tipo="dni" autocomplete="off">
+              <div class="error" aria-live="polite"></div>
+            </div>
+            </div>
+            <div class="campo">
+              <label for="sub-mensaje">¿Qué está corrigiendo?</label>
+              <textarea id="sub-mensaje" name="mensaje" required data-tipo="texto" maxlength="1500" placeholder="Ejemplo: Adjunto nuevamente la captura del pago, ahora legible."></textarea>
+              <div class="error" aria-live="polite"></div>
+            </div>
+            <div class="campo">
+              <label>Archivos corregidos <span class="opcional">(si se los pidieron)</span></label>
+              <div class="archivos" id="sub-adjuntos" data-max="3">
+                <input type="file" id="sub-adjuntos-input" accept=".pdf,.jpg,.jpeg,.png,image/*" multiple>
+                <label for="sub-adjuntos-input">Elegir archivos</label>
+                <div class="ayuda">Hasta 3 archivos PDF, JPG o PNG de 4 MB cada uno.</div>
+                <ul class="lista-archivos"></ul>
+              </div>
+              <div class="error" aria-live="polite"></div>
+            </div>
+          </fieldset>
+          <input class="trampa" type="text" name="web" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="mensaje-envio"></div>
+          <div class="acciones-form"><span></span><button type="submit" class="boton exito">Enviar corrección</button></div>
         </form>
       </section>
     </div>

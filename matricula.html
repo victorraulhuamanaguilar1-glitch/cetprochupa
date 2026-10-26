@@ -3,10 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Matrícula en línea · CETPRO Chupa</title>
-  <meta name="description" content="Matricúlese en línea en el CETPRO de Chupa: llene su ficha y adjunte su pago desde el celular.">
+  <title>Matrícula en línea · CETPRO Conrado Kretz Lenz – Chupa</title>
+  <meta name="description" content="Matricúlese en línea en el CETPRO de Chupa: elija especialidad y módulos, pague y adjunte su comprobante desde el celular.">
   <meta name="theme-color" content="#164a72">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CETPRO Conrado Kretz Lenz – Chupa">
+  <meta property="og:title" content="Matrícula en línea · CETPRO Conrado Kretz Lenz – Chupa">
+  <meta property="og:description" content="Matricúlese en línea en el CETPRO de Chupa: elija especialidad y módulos, pague y adjunte su comprobante desde el celular.">
+  <meta property="og:image" content="https://victorraulhuamanaguilar1-glitch.github.io/cetprochupa/assets/img/compartir.jpg">
+  <meta property="og:url" content="https://victorraulhuamanaguilar1-glitch.github.io/cetprochupa/matricula.html">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/logo.png">
   <link rel="preload" href="assets/fuentes/archivo.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/estilos.css">
 </head>
@@ -22,7 +30,6 @@
       </div>
     </div>
     <div class="aguayo fina" role="presentation"></div>
-
     <div class="angosto">
       <form class="formulario" id="form-matricula" novalidate>
         <div class="progreso" aria-hidden="true">
@@ -69,25 +76,25 @@
               <div class="error" aria-live="polite"></div>
             </div>
           </div>
-          <div class="campo">
-            <label for="mat-correo">Correo electrónico <span class="opcional">(opcional, para recibir la confirmación)</span></label>
-            <input id="mat-correo" name="correo" type="email" autocomplete="email" data-tipo="correo">
-            <div class="error" aria-live="polite"></div>
-          </div>
-          <div class="campo">
-            <label for="mat-direccion">Dirección o comunidad donde vive</label>
-            <input id="mat-direccion" name="direccion" autocomplete="street-address" required data-tipo="texto">
-            <div class="error" aria-live="polite"></div>
-          </div>
+            <div class="campo">
+              <label for="mat-correo">Correo electrónico <span class="opcional">(opcional, para recibir avisos)</span></label>
+              <input id="mat-correo" name="correo" type="email" autocomplete="email" data-tipo="correo">
+              <div class="error" aria-live="polite"></div>
+            </div>
+            <div class="campo">
+              <label for="mat-direccion">Dirección o comunidad donde vive</label>
+              <input id="mat-direccion" name="direccion" autocomplete="street-address" required data-tipo="texto">
+              <div class="error" aria-live="polite"></div>
+            </div>
           <div class="campo">
             <label>Foto o escaneo de su DNI</label>
-            <div class="archivos" id="mat-dni-archivo" data-max="2" data-requerido="Adjunte la foto de su DNI (puede subir ambas caras).">
-              <input type="file" id="mat-dni-input" accept=".pdf,.jpg,.jpeg,.png,image/*" multiple>
-              <label for="mat-dni-input">Elegir foto o archivo</label>
-              <div class="ayuda">PDF, JPG o PNG, hasta 4 MB. Puede subir ambas caras.</div>
-              <ul class="lista-archivos"></ul>
-            </div>
-            <div class="error" aria-live="polite"></div>
+              <div class="archivos" id="mat-dni-archivo" data-max="2" data-requerido="Adjunte la foto de su DNI (puede subir ambas caras).">
+                <input type="file" id="mat-dni-archivo-input" accept=".pdf,.jpg,.jpeg,.png,image/*" multiple>
+                <label for="mat-dni-archivo-input">Elegir foto o archivo</label>
+                <div class="ayuda">PDF, JPG o PNG, hasta 4 MB. Puede subir ambas caras.</div>
+                <ul class="lista-archivos"></ul>
+              </div>
+              <div class="error" aria-live="polite"></div>
           </div>
           <div class="acciones-form">
             <span></span>
@@ -96,25 +103,34 @@
         </fieldset>
 
         <fieldset class="paso-form" hidden>
-          <legend>Paso 2 de 4 · Especialidad</legend>
+          <legend>Paso 2 de 4 · Especialidad y módulos</legend>
           <div class="campo">
             <label for="mat-especialidad">Especialidad</label>
             <select id="mat-especialidad" name="especialidad" required></select>
             <div class="error" aria-live="polite"></div>
           </div>
-          <div class="campo">
-            <label for="mat-turno">Turno</label>
-            <select id="mat-turno" name="turno" required></select>
+          <div class="campo" id="mat-modulos-campo">
+            <div id="mat-modulos"></div>
             <div class="error" aria-live="polite"></div>
           </div>
-          <div class="campo">
-            <label for="mat-estudios">Último grado de estudios <span class="opcional">(opcional)</span></label>
-            <select id="mat-estudios" name="grado_instruccion" class="sin-validar">
-              <option value="">Elija</option>
-              <option>Primaria incompleta</option><option>Primaria completa</option>
-              <option>Secundaria incompleta</option><option>Secundaria completa</option>
-              <option>Superior técnica</option><option>Superior universitaria</option>
-            </select>
+          <input type="hidden" name="modulos" id="mat-modulos-hidden">
+          <input type="hidden" name="cantidad_modulos" id="mat-cantidad">
+          <div class="total-matricula" id="mat-total" aria-live="polite"></div>
+          <div class="fila">
+            <div class="campo">
+              <label for="mat-turno">Turno</label>
+              <select id="mat-turno" name="turno" required></select>
+              <div class="error" aria-live="polite"></div>
+            </div>
+            <div class="campo">
+              <label for="mat-estudios">Último grado de estudios <span class="opcional">(opcional)</span></label>
+              <select id="mat-estudios" name="grado_instruccion" class="sin-validar">
+                <option value="">Elija</option>
+                <option>Primaria incompleta</option><option>Primaria completa</option>
+                <option>Secundaria incompleta</option><option>Secundaria completa</option>
+                <option>Superior técnica</option><option>Superior universitaria</option>
+              </select>
+            </div>
           </div>
           <div class="acciones-form">
             <button type="button" class="boton secundario" data-anterior>Volver</button>
@@ -124,13 +140,13 @@
 
         <fieldset class="paso-form" hidden>
           <legend>Paso 3 de 4 · Pago de matrícula</legend>
-          <p>Monto de la matrícula: <strong id="mat-monto-texto"></strong>. Pague por cualquiera de estos medios y adjunte la captura:</p>
+          <p>Total a pagar: <strong id="mat-monto-texto"></strong>. Pague por cualquiera de estos medios y adjunte la captura:</p>
           <div class="medios" id="mat-medios"></div>
           <div class="fila">
             <div class="campo">
               <label for="mat-operacion">Número de operación</label>
               <input id="mat-operacion" name="operacion" required data-tipo="operacion" autocomplete="off">
-              <div class="ayuda">Aparece en la captura de Yape o Plin, o en el voucher del banco.</div>
+              <div class="ayuda">Aparece en la captura de Yape o en el voucher del banco.</div>
               <div class="error" aria-live="polite"></div>
             </div>
             <div class="campo">
@@ -141,13 +157,13 @@
           </div>
           <div class="campo">
             <label>Captura o voucher del pago</label>
-            <div class="archivos" id="mat-voucher" data-max="1" data-requerido="Adjunte la captura o el voucher de su pago.">
-              <input type="file" id="mat-voucher-input" accept=".pdf,.jpg,.jpeg,.png,image/*">
-              <label for="mat-voucher-input">Elegir captura o foto del voucher</label>
-              <div class="ayuda">PDF, JPG o PNG, hasta 4 MB.</div>
-              <ul class="lista-archivos"></ul>
-            </div>
-            <div class="error" aria-live="polite"></div>
+              <div class="archivos" id="mat-voucher" data-max="1" data-requerido="Adjunte la captura o el voucher de su pago.">
+                <input type="file" id="mat-voucher-input" accept=".pdf,.jpg,.jpeg,.png,image/*">
+                <label for="mat-voucher-input">Elegir captura o foto del voucher</label>
+                <div class="ayuda">PDF, JPG o PNG, hasta 4 MB.</div>
+                <ul class="lista-archivos"></ul>
+              </div>
+              <div class="error" aria-live="polite"></div>
           </div>
           <div class="acciones-form">
             <button type="button" class="boton secundario" data-anterior>Volver</button>
@@ -157,7 +173,8 @@
 
         <fieldset class="paso-form" hidden>
           <legend>Paso 4 de 4 · Revise y confirme</legend>
-          <div class="estado-tramite" style="margin:0 0 22px"><dl id="mat-resumen"></dl></div>
+          <div class="estado-tramite" style="margin:0 0 16px"><dl id="mat-resumen"></dl></div>
+          <div id="mat-aviso-monto"></div>
           <label class="consentimiento">
             <input type="checkbox" name="acepta_datos" required data-requerido="Debe aceptar para enviar su matrícula.">
             <span>Declaro que mis datos son verdaderos y autorizo su uso para el proceso de matrícula, según la Ley N.° 29733 de Protección de Datos Personales.<span class="error" style="display:block"></span></span>

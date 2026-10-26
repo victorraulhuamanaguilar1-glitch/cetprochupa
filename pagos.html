@@ -3,10 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pagos · CETPRO Chupa</title>
+  <title>Pagos · CETPRO Conrado Kretz Lenz – Chupa</title>
   <meta name="description" content="Tarifas, medios de pago y registro de comprobantes del CETPRO de Chupa.">
   <meta name="theme-color" content="#164a72">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CETPRO Conrado Kretz Lenz – Chupa">
+  <meta property="og:title" content="Pagos · CETPRO Conrado Kretz Lenz – Chupa">
+  <meta property="og:description" content="Tarifas, medios de pago y registro de comprobantes del CETPRO de Chupa.">
+  <meta property="og:image" content="https://victorraulhuamanaguilar1-glitch.github.io/cetprochupa/assets/img/compartir.jpg">
+  <meta property="og:url" content="https://victorraulhuamanaguilar1-glitch.github.io/cetprochupa/pagos.html">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/logo.png">
   <link rel="preload" href="assets/fuentes/archivo.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/estilos.css">
 </head>
@@ -22,7 +30,6 @@
       </div>
     </div>
     <div class="aguayo fina" role="presentation"></div>
-
     <div class="angosto">
       <section class="formulario" aria-labelledby="t-tarifas">
         <h2 id="t-tarifas" style="margin-top:0;font-stretch:85%">Tarifas</h2>
@@ -49,11 +56,11 @@
               <div class="error" aria-live="polite"></div>
             </div>
           </div>
-          <div class="campo">
-            <label for="pag-nombres">Apellidos y nombres del estudiante</label>
-            <input id="pag-nombres" name="nombres" required data-tipo="texto" autocomplete="name">
-            <div class="error" aria-live="polite"></div>
-          </div>
+            <div class="campo">
+              <label for="pag-nombres">Apellidos y nombres del estudiante</label>
+              <input id="pag-nombres" name="nombres" required data-tipo="texto" autocomplete="name">
+              <div class="error" aria-live="polite"></div>
+            </div>
           <div class="fila">
             <div class="campo">
               <label for="pag-concepto">Concepto</label>
@@ -81,33 +88,33 @@
               <div class="error" aria-live="polite"></div>
             </div>
           </div>
-          <div class="campo">
-            <label for="pag-operacion">Número de operación</label>
-            <input id="pag-operacion" name="operacion" required data-tipo="operacion" autocomplete="off">
-            <div class="error" aria-live="polite"></div>
-          </div>
-          <div class="campo">
-            <label for="pag-correo">Correo electrónico <span class="opcional">(opcional)</span></label>
-            <input id="pag-correo" name="correo" type="email" data-tipo="correo" autocomplete="email">
-            <div class="error" aria-live="polite"></div>
-          </div>
+            <div class="campo">
+              <label for="pag-operacion">Número de operación</label>
+              <input id="pag-operacion" name="operacion" required data-tipo="operacion" autocomplete="off">
+              <div class="error" aria-live="polite"></div>
+            </div>
+            <div class="campo">
+              <label for="pag-correo">Correo electrónico <span class="opcional">(opcional)</span></label>
+              <input id="pag-correo" name="correo" type="email" data-tipo="correo" autocomplete="email">
+              <div class="error" aria-live="polite"></div>
+            </div>
           <div class="campo">
             <label>Captura o voucher</label>
-            <div class="archivos" id="pag-voucher" data-max="1" data-requerido="Adjunte la captura o el voucher del pago.">
-              <input type="file" id="pag-voucher-input" accept=".pdf,.jpg,.jpeg,.png,image/*">
-              <label for="pag-voucher-input">Elegir captura o foto del voucher</label>
-              <div class="ayuda">PDF, JPG o PNG, hasta 4 MB.</div>
-              <ul class="lista-archivos"></ul>
-            </div>
-            <div class="error" aria-live="polite"></div>
+              <div class="archivos" id="pag-voucher" data-max="1" data-requerido="Adjunte la captura o el voucher del pago.">
+                <input type="file" id="pag-voucher-input" accept=".pdf,.jpg,.jpeg,.png,image/*">
+                <label for="pag-voucher-input">Elegir captura o foto del voucher</label>
+                <div class="ayuda">PDF, JPG o PNG, hasta 4 MB.</div>
+                <ul class="lista-archivos"></ul>
+              </div>
+              <div class="error" aria-live="polite"></div>
           </div>
         </fieldset>
-        <label class="consentimiento">
-          <input type="checkbox" name="acepta_datos" required data-requerido="Debe aceptar para registrar su pago.">
-          <span>Declaro que el comprobante es auténtico y autorizo el uso de mis datos para verificar el pago (Ley N.° 29733).<span class="error" style="display:block"></span></span>
-        </label>
-        <input class="trampa" type="text" name="web" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <div class="mensaje-envio"></div>
+          <label class="consentimiento">
+            <input type="checkbox" name="acepta_datos" required data-requerido="Debe aceptar para registrar su pago.">
+            <span>Declaro que el comprobante es auténtico y autorizo el uso de mis datos para verificar el pago (Ley N.° 29733).<span class="error" style="display:block"></span></span>
+          </label>
+          <input class="trampa" type="text" name="web" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="mensaje-envio"></div>
         <div class="acciones-form"><span></span><button type="submit" class="boton exito">Registrar pago</button></div>
       </form>
     </div>
